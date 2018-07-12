@@ -2,8 +2,7 @@
 
 <?php
 
-	// $n = (string) rand();
-	$m = "11";
+	$m = (string) rand();
 
 	$m_length = strlen($m);
 	
@@ -22,6 +21,9 @@
 	if($m == $m_halves){
 		
 		echo ("2n is m symmetric: ".$n." and ".$m);
+	}else{
+		
+		echo ("m ".$m." is not symmetric");
 	}
 	
 ?>
