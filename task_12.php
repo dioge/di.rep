@@ -2,8 +2,7 @@
 
 <?php
 
-	// $n = (string) rand();
-	$n = (string) 199;
+	$n = (string) rand();
 
 	$check = true;
 
