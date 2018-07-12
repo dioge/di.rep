@@ -17,11 +17,5 @@
 
 	$divisors[] = $n;
 	
-	if($divisors){
-		
-		var_dump ($divisors);
-	}else{
-
-		echo ("The number has no divisors");
-	}
+	var_dump ($divisors);
 ?>
