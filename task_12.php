@@ -2,13 +2,14 @@
 
 <?php
 
-	$n = (string) rand();
+	// $n = (string) rand();
+	$n = (string) 199;
 
 	$check = true;
+
 	echo ("The number is: ".$n."<br>");
 
 	for($i = 2; $i <= ($n/2); $i++){
-		
 		if($n%$i == 0){
 
 			$check = false;
@@ -16,7 +17,7 @@
 		}
 	}
 
-	if($check){
+	if($n != 1 && $check){
 	
 		echo ("N ".$n." is a prime number");
 	}
