@@ -11,7 +11,6 @@
 		if($n%$i == 0){
 
 			$divisors[] = $i;
-			continue;
 		}
 	}
 
