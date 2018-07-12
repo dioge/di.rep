@@ -2,36 +2,22 @@
 
 <?php
 
-	
 	$n = (string) rand();
 
+	$check = true;
 	echo ("The number is: ".$n."<br>");
 
-	for($i = 1; $i < $n; $i++){
+	for($i = 2; $i <= ($n/2); $i++){
 		
-		$i .= '';
-		$length = strlen($i);
+		if($n%$i == 0){
 
-		for($j = 0; $j < $length; $j++){
-			
-			$i_array[$j] = $i[$j];
-		}
-
-		$n_array[$i] = $i_array;
-		
-		
-		$sum = 0;
-
-		for($j = 0; $j < $length; $j++){
-			
-			$sum += $n_array[$i][$j];
-		}
-		
-		if(($i%$sum) == 0){
-			
-			$final_array[] = $i;
+			$check = false;
+			break;
 		}
 	}
 
-	var_dump($final_array);
+	if($check){
+	
+		echo ("N ".$n." is a prime number");
+	}
 ?>
