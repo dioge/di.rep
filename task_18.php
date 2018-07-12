@@ -1,24 +1,55 @@
 <pre>
 
 <?php
-
-	$n = rand(2, 10);
+	$n = rand(1, 11000);
 	
-	echo ("The range is from 2 to ".$n.". Amicable numbers are:<br>");
+	echo ("The range is from 1 to ".$n.". Amicable numbers are:<br>");
 	
-	for($i = 2; $i < $n; $i++){
-		for($j = 1; $j <= ($i/2); $j++){
+    // Находим все суммы делителей чисел
+    
+	for($i = 1; $i <= $n; $i++){
+        
+		for($j = 1; $j < (($i/2) + 1); $j++){
+            
 			if($i%$j == 0){
+                
 				$divisors[] = $j;
 			}
 		}
 
-		$numbers_divisors[] = $divisors;
-			var_dump ($i);
-			var_dump ($divisors);
+   		$count = count($divisors);
+
+        $sum = 0;
 		
+		for($j = 0; $j < $count; $j++){
+            
+			$sum += $divisors[$j];
+		}
+        
+        $divisors_sums[$i] = $sum;
+
 		unset($divisors);
 	}
+    
+    // Проверяем на дружественность
 	
-	var_dump ($numbers_divisors);
+	for($i = 1; $i <= $n; $i++){
+    
+        for($j = 1; $j <= $n; $j++){
+            
+            if($i != $j && $i == $divisors_sums[$j] && $j == $divisors_sums[$i]){
+                
+                if($check == $j){
+                    
+                    break;
+                }
+                
+                echo ($i." and ".$j."<br>");
+
+                $check = $i;
+                
+            }
+        }
+    }
+    
 ?>
