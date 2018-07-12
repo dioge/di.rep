@@ -6,7 +6,7 @@
 
 	echo ("The number is: ".$n."<br>");
 	
-	for($i = 2; $i <= ($n/2); $i++){
+	for($i = 1; $i <= ($n/2); $i++){
 
 		if($n%$i == 0){
 
@@ -15,6 +15,8 @@
 		}
 	}
 
+	$divisors[] = $n;
+	
 	if($divisors){
 		
 		var_dump ($divisors);
