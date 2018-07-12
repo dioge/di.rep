@@ -3,7 +3,6 @@
 <?php
 
 	$n = rand();
-	// $n = 100;
 
 	echo ("The number is: ".$n."<br>");
 	
