@@ -3,7 +3,6 @@
 <?php
 
 	$n = (string) rand();
-	// $n = "51428";
 	
 	$n_length = strlen($n);
 	
