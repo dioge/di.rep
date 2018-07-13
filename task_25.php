@@ -1,11 +1,11 @@
 <pre>
 
 <?php
-
-	// $n = rand(1, 9);
-	$n = 11;
+	$n = rand(1, 45000);
 	
 	echo ("The range is from 1 to ".$n.":<br>");
+    
+    // Находим факторионы
 	
 	for($i = 1; $i <= $n; $i++){
 		
@@ -13,41 +13,46 @@
 		
 		$length = strlen($i);
 		
-		// $j_factorial_sum = 0;
+		$j_factorial_sum = 0;
 		
 		for($j = 0; $j < $length; $j++){
-
-			$k_factorial = 1;
+            
+			$j_factorial = 1;
+            
+            if($i[$j] == 0){
+                
+                $j_factorial_sum += $j_factorial;
+                
+                continue;
+            }
 			
 			for($k = 1; $k <= $i[$j]; $k++){
 				
-				$k_factorial *= $k;
-				// var_dump($k);
+				$j_factorial *= $k;
 			}
 			
-			$j_factorial_sum += $k_factorial;
-	var_dump ($k_factorial);
+			$j_factorial_sum += $j_factorial;
 		}
 		
-		$i_array[$i] = $j_factorial_sum;
+        if($i == $j_factorial_sum){
+            
+            $factorion_array[] = $j_factorial_sum;
+        }
 	}
-
-	var_dump ($i_array);
+    
+    // Находим количество и сумму факторионов
+    
+    $count = count($factorion_array);
+    
+    echo ("Number of factorions in the range: ".$count."<br>");
+    
+	var_dump ($factorion_array);
+    
+    for($i = 0; $i < $count; $i++){
+        
+        $sum += $factorion_array[$i];
+    }
 	
-	// Высчитываем наибольшую сумму
-	
-	// $biggest_sum = $number = 1;
-	
-	// for($i = 1; $i <= $n; $i++){
-
-		// if($i_sums[$i] > $biggest_sum){
-			
-			// $biggest_sum = $i_sums[$i];
-			
-			// $number = $i;
-		// }
-	// }
-	
-	// echo ($biggest_sum." is the biggest sum of ".$number." number in the range");
-
+    echo ("Sum of factorions in the range: ".$sum);
+    
 ?>
