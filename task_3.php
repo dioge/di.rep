@@ -1,29 +1,28 @@
 <pre><?php
 
-	$n .= rand(1, 1000);
+	$n = $check = rand(10, 1000);
 	
 	$increase = true;
 	
-	$n_length = (strlen($n) - 1);
+	while($n >= 1){
 
-	for($i=0; $i < $n_length; $i++){
-
-		if($n[$i] >= $n[$i + 1]){
+		if($n%10 <= (int)($n/10)%10){
 
 			$increase = false;
 
 			break;
-			
 		}
+		
+		$n = (int)($n/10);
 	}
 	
-	if($increase && ($n_length > 0)){
+	if($increase){
 		
-		echo ($n.": Increasing sequence.");
+		echo ($check.": Increasing sequence.");
 		
 	}else{
 		
-		echo ($n.": Not increasing sequence.");
+		echo ($check.": Not increasing sequence.");
 	}
 	
 ?>
