@@ -12,7 +12,7 @@
 
 				if($n%10 <= (int)($n/10)%10){
 
-			continue 2;
+					continue 2;
 				}
 				
 				$n = (int)($n/10);
