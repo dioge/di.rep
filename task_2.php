@@ -1,16 +1,14 @@
 <pre><?php
 
-	$n = mt_rand(1, 36);
+	$n = rand(1, 36);
 	
 	echo ("The number is ".$n."<br>");
 	
 	echo ("Four digit numbers sum of wich equals ".$n."<br>");
 	
-	for($i = 1000; $i <= 9999; $i++){
+	for($i = 1000; $i < 10000; $i++){
 		
-		$i.="";
-		
-		if($n == ($i[0] + $i[1] + $i[2] + $i[3])){
+		if($n == ($i%10 + ((int)(($i/10)%10)) + ((int)(($i/100)%10)) + ((int)(($i/1000)%10)))){
 		
 			echo ($i."<br>");
 		
