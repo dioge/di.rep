@@ -1,63 +1,48 @@
-<pre>
+<pre><?php
 
-<?php
+	echo ("Increasing sequence:<br>");
 
-    for($i = 1000; $i <= 9999; $i++){
-
+	for($i = 1000; $i < 10000; $i++){
+		
         if($i%2 == 0){
             
-            $i .= '';
-            
-            for($j = 0; $j < strlen($i); $j++){
+			$n = $i;
+			
+			while($n >= 1){
 
-                $j_array[$j] = $i[$j];
-            }
-            
-            $i_array[] = $j_array;
-        }
+				if($n%10 <= (int)($n/10)%10){
+
+			continue 2;
+				}
+				
+				$n = (int)($n/10);
+			}
+		
+			echo ($i."<br>");
+		}
     }
+	
+	
+	echo ("Decreasing sequence:<br>");
 
-    for($i = 0; $i < (count($i_array)); $i++){
-        for($j = 0; $j <= (count($i_array[$i])); $j++){
+	for($i = 1000; $i < 10000; $i++){
+		
+        if($i%2 == 0){
+            
+			$n = $i;
+			
+			while($n >= 10){
+				
+				if($n%10 >= ((int)($n/10)%10)){
 
-            if($i_array[$i][$j+1] === NULL){
-                
-                $inc_numbers[] = implode($i_array[$i]);
-                break;
-                
-            }elseif($i_array[$i][$j] > $i_array[$i][$j+1] || $i_array[$i][$j] == $i_array[$i][$j+1]){
-
-                break;
-                
-            }elseif($i_array[$i][$j] < $i_array[$i][$j+1]){
-                
-                continue;
-            }
-        }
-    }    
-    
-    echo ("Increasing sequence: ");
-    var_dump ($inc_numbers);
-    
-    for($i = 0; $i < (count($i_array)); $i++){
-        for($j = 0; $j <= (count($i_array[$i])); $j++){
-
-            if($i_array[$i][$j+1] === NULL){
-                
-                $dec_numbers[] = implode($i_array[$i]);
-                break;
-                
-            }elseif($i_array[$i][$j] < $i_array[$i][$j+1] || $i_array[$i][$j] == $i_array[$i][$j+1]){
-
-                break;
-                
-            }elseif($i_array[$i][$j] > $i_array[$i][$j+1]){
-                
-                continue;
-            }
-        }
-    }    
-    
-    echo ("<br>"."Decreasing sequence: ");
-    var_dump ($dec_numbers);
+					continue 2;
+				}
+				
+				$n = (int)($n/10);
+			}
+		
+			echo ($i."<br>");
+		}
+    }
+	
 ?>
