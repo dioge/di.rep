@@ -1,27 +1,13 @@
 <pre>
-
 <?php
 
-	$n = (string) mt_rand();
-
-	var_dump($n);
+	echo ($n = mt_rand()."<br>");
 	
-	$length = strlen($n);
-	
-	for($i = 0; $i < $length; $i++){
-
-		$n_array[] = $n[$i];
-	}
-
-	for($i = 0; $i < $length; $i++){
-
-		$reverse_array[] = $n_array[($length - 1) - $i];
-	}
-	
-	for($i = 0; $i < $length; $i++){
+	while($n >= 1){
 		
-		$reverse_n .= $reverse_array[$i];
+		echo ($n%10);
+
+		$n = (int)($n/10);
 	}
 	
-	var_dump($reverse_n);
 ?>
