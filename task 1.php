@@ -1,22 +1,32 @@
 <pre><?php
 
-	$n = (string) mt_rand();
+	$n = rand();
+	
+	$count = 1;
 	
 	echo ("The number is ".$n."<br>");
 	
-	$n_length = strlen($n);
-	
-	for($i = 0; $i < $n_length; $i++){
-		
-		if($n[$i] < 5){
+	for($i = 10; $i < $n; $i *= 10){
 
-			$digits++;
-			
-			echo ($n[$i]."<br>");
+		$count *= 10;
+	}
+	
+	$quantity = 0;
+
+	for($i = $count; $i >= 1; $i /= 10){
+
+		$digit = floor($n/$i);
 		
+		$n -= $i*$digit;
+		
+		var_dump ($digit);
+		
+		if($digit < 5){
+			
+			$quantity++;
 		}
 	}
 	
-	echo ("The number of digits less than 5 used in the number is ".$digits);
-
+	echo ("Количество цифр, меньших 5, в числе: ".$quantity);
+	
 ?>
