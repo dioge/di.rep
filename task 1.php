@@ -2,31 +2,20 @@
 
 	$n = rand();
 	
-	$count = 1;
+	$count = 0;
 	
-	echo ("The number is ".$n."<br>");
+	echo ("Число: ".$n."<br>");
 	
-	for($i = 10; $i < $n; $i *= 10){
-
-		$count *= 10;
-	}
-	
-	$quantity = 0;
-
-	for($i = $count; $i >= 1; $i /= 10){
-
-		$digit = floor($n/$i);
+	while($n >= 1){
 		
-		$n -= $i*$digit;
-		
-		var_dump ($digit);
-		
-		if($digit < 5){
+		if($n%10 < 5){
 			
-			$quantity++;
+			$count++;
 		}
+
+		$n = floor($n/10);
 	}
 	
-	echo ("Количество цифр, меньших 5, в числе: ".$quantity);
+	echo ("Количество цифр, меньших 5, в числе: ".$count)."<br>";
 	
 ?>
