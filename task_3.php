@@ -1,37 +1,29 @@
 <pre><?php
 
-	$n = rand(100, 999);
+	$n .= rand(1, 1000);
 	
-	$n.='';
+	$increase = true;
 	
-	for($i=0;$i<strlen($n);$i++){
-		$n_array[] = (int)$n[$i];
-	}
-	
+	$n_length = (strlen($n) - 1);
 
-	$increase = false;
-	
-	for($i=0;$i<(count($n_array));$i++){
+	for($i=0; $i < $n_length; $i++){
 
-		if($n_array[$i+1]===NULL){
-			
-			$increase = true;
-			break;
-		}elseif($n_array[$i]>$n_array[$i+1] || $n_array[$i]==$n_array[$i+1]){
+		if($n[$i] >= $n[$i + 1]){
+
+			$increase = false;
 
 			break;
-		}elseif($n_array[$i]<$n_array[$i+1]){
 			
-			continue;
 		}
 	}
 	
-	
-	if($increase){
+	if($increase && ($n_length > 0)){
 		
-		var_dump($n.": Increasing sequence.");
+		echo ($n.": Increasing sequence.");
+		
 	}else{
-
-		var_dump($n.": Something else.");
+		
+		echo ($n.": Not increasing sequence.");
 	}
+	
 ?>
