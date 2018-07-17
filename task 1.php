@@ -1,22 +1,20 @@
 <pre><?php
 
-	$n = mt_rand();
+	$n = (string) mt_rand();
 	
-	$n_array = str_split($n);
+	echo ("The number is ".$n."<br>");
 	
-	var_dump($n_array);
+	$n_length = strlen($n);
 	
-	$numbers;
-	
-	for($i=0; $i<(count($n_array)); $i++){
+	for($i = 0; $i < $n_length; $i++){
 		
-		if($n_array[$i]<5){
-		
+		if($n[$i] < 5){
+
 			$numbers++;
 		
 		}
 	}
 	
-	echo ($numbers);
+	echo ("The number of digits less than 5 used in the number is ".$numbers);
 
 ?>
