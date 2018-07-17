@@ -10,11 +10,11 @@
 		
 		if($n[$i] < 5){
 
-			$numbers++;
+			$digits++;
 		
 		}
 	}
 	
-	echo ("The number of digits less than 5 used in the number is ".$numbers);
+	echo ("The number of digits less than 5 used in the number is ".$digits);
 
 ?>
