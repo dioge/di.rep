@@ -13,26 +13,26 @@
 			if($i%$j == 0){
                 
 				$i_sum += $j;
+			}
+		}
+		
+		for($k = ($i + 1); $k <= $n; $k++){
+
+			if($i_sum == $k){
 				
-				for($k = ($i + 1); $k <= $n; $k++){
+				$k_sum = 0;
 
-					if($i_sum == $k){
-						
-						$k_sum = 0;
-
-						for($p = 1; $p <= ($k/2); $p++){
-							
-							if($k%$p == 0){
-								
-								$k_sum += $p;
-							}
-						}
+				for($p = 1; $p <= ($k/2); $p++){
 					
-						if($i == $k_sum){
-							
-							echo ($i." и ".$k."<br>");
-						}
+					if($k%$p == 0){
+						
+						$k_sum += $p;
 					}
+				}
+			
+				if($i == $k_sum){
+					
+					echo ($i." и ".$k."<br>");
 				}
 			}
 		}
