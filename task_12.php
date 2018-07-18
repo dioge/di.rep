@@ -1,23 +1,21 @@
-<pre>
-
 <?php
 
 	$n = rand();
 
-	$check = true;
-
-	echo ("The number is: ".$n."<br>");
-
 	for($i = 2; $i <= ($n/2); $i++){
+
 		if($n%$i == 0){
 
-			$check = false;
+			echo ("Число ".$n." не является простым числом");
+			
+			$n = false;
+			
 			break;
 		}
 	}
 
-	if($n != 1 && $check){
+	if($n){
 	
-		echo ("N ".$n." is a prime number");
+		echo ("Число ".$n." является простым числом");
 	}
 ?>
