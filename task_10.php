@@ -2,79 +2,33 @@
 
 <?php
 
+	$n = rand();
+
+	echo ("Число: ".$n."<br>");
 	
-	$n = (string) rand();
+	for($i = 0; $i <= $n; $i++){
 
-	echo ("The number is: ".$n."<br>");
-
-
-	// Получаем числа-палиндромы меньшие N
-
-	for($i = 0; $i < $n; $i++){
+	$reverse = $square_reverse = 0;
 		
-		$i .= '';
-		$length = strlen($i);
-		
-		for($j = 0; $j < $length; $j++){
+		for($j = $i; $j >= 1; $j = floor($j/10)){
 			
-			$i_array[$j] = $i[$j];
-		}
-
-		for($j = 0; $j < $length; $j++){
-
-			$reverse_i_array[$j] = $i_array[($length - 1) - $j];
+			$reverse = (($reverse*10) + $j%10);
 		}
 		
-		$reverse_i = '';
-		
-		for($j = 0; $j < $length; $j++){
+		if($i == $reverse){
 			
-			$reverse_i .= $reverse_i_array[$j];
-		}
+			$square = ($i * $i);
 		
-		if($i == $reverse_i){
+			for($k = $square; $k >= 1; $k = floor($k/10)){
 			
-			$n_array[] = $i;
-		}
-	}
-		$count = count($n_array);
+				$square_reverse = (($square_reverse*10) + $k%10);
+			}
 
-	// Квадратные числа-палиндромы
-	
-	for($i = 0; $i < $count; $i++){
-		
-		$number = (string) ($n_array[$i]*$n_array[$i]);
-		$length = strlen($number);
+			if($square == $square_reverse){
 
-		for($j = 0; $j < $length; $j++){
-			
-			$number_array[$j] = $number[$j];
-		}
-
-		for($j = 0; $j < $length; $j++){
-
-			$reverse_number_array[$j] = $number_array[($length - 1) - $j];
-		}
-		
-		$reverse_number = '';
-		
-		for($j = 0; $j < $length; $j++){
-			
-			$reverse_number .= $reverse_number_array[$j];
-		}
-
-		if($number == $reverse_number){
-
-			$square_number_array[] = $number;
+				echo ("Квадрат числа-палиндрома ".$i." также является палиндромом ".$square."<br>");
+			}
 		}
 	}
 
-	// Результат
-	
-	for($i = 0; $i < count($square_number_array); $i++){
-
-		$final_number_array[$i] = (int)(sqrt($square_number_array[$i]));
-	}
-	
-	var_dump($final_number_array);
 ?>
