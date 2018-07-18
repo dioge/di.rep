@@ -1,48 +1,37 @@
-<pre>
+<form action="task_9.php" method="get">
+
+	<p>Введите натуральное число.</p>
+	<input type="text" name="n">
+	
+</form>
 
 <?php
 
-	// Массив цифр, составляющих число
+	$n = $initial = $_GET["n"];
 
-	$number .= rand();
-	// $number = (string) 625;
+	$square = $initial_square = $n*$n;
 
-	var_dump($number);
-	
-	$n_length = strlen($number);
-	
-	for($i = 0; $i < $n_length; $i++){
+	$check = true;
 
-		$n_array[] = $number[$i];
-	}
-	
-	// Массив цифр, составляющих квадрат числа
-
-	$square_number .= $number*$number;
-
-	var_dump($square_number);
-	
-	$sn_length = strlen($square_number);
-	
-	for($i = 0; $i < $sn_length; $i++){
-
-		$sn_array[] = $square_number[$i];
-	}
-
-	// Проверка на автоморфность
-	
-	for($i = 0; $i < $n_length; $i++){
+	while($n >= 1){
 		
-		$n_digit = ($n_length - 1) - $i;
-		$sn_digit = ($sn_length - 1) - $i;
-		
-		if($n_array[$n_digit] !== $sn_array[$sn_digit]){
-		
+		if($n%10 != $square%10){
+
+			$check = false;
+			
+			echo ($initial." is not an automorphic number. Square number is ".$initial_square);
+
 			break;
 		}
-		if($i == ($n_length - 1)){
-			
-			echo ($number." is an automorphic number. Square number is ".$square_number);
-		}
+		
+		$n = (int)($n/10);
+		
+		$square = (int)($square/10);
 	}
+
+	if($check && $_GET["n"] != null){
+	
+		echo ($initial." is an automorphic number. Square number is ".$initial_square);
+	}
+
 ?>
