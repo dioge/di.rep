@@ -2,9 +2,9 @@
 
 	$n = rand(1, 36);
 	
-	echo ("The number is ".$n."<br>");
+	echo ("Число: ".$n."<br>");
 	
-	echo ("Four digit numbers sum of wich equals ".$n."<br>");
+	echo ("Четырехзначные числа, сумма цифр которых равна ".$n."<br>");
 	
 	for($i = 1000; $i < 10000; $i++){
 		
