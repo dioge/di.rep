@@ -4,31 +4,27 @@
 
 	$n = $dividend = rand();
 
-	echo ("The number is: ".$n."<br>");
+	echo ("Число: ".$n." простые множители:<br>");
 	
-	// Находим простые множители
-	
-	for($i = 2; $i < $n; $i++){
+	$factor = 2;
 
-		if($dividend%$i == 0){
+	while($dividend > 1){
+		
+		if($dividend%$factor == 0){
 
-			$prime_factors[] = $i;
+			echo ($factor."<br>");
 			
-			$dividend = ($dividend/$i);
+			$dividend /= $factor;
 			
-			$i = 1;
+			$factor = 1;
 		}
+		
+		$factor++;
+	}
+		
+	if($n == $dividend){
+		
+		echo ("Число ".$n." простое <br>");
 	}
 	
-	// Вывод
-
-	if(!$prime_factors){
-		
-		echo ("The number is a prime and has no prime factors <br>");
-	}else{
-	
-		echo ("Prime factors of the number: <br>");
-		
-		var_dump ($prime_factors);
-	}
 ?>
