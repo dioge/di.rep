@@ -10,7 +10,7 @@
 			
 			if($i%10 == $j%10){
 				
-				echo ("The number has following doubling digits: ".($i%10)."<br>");
+				echo ("Число имеет повторяющиеся цифры: ".($i%10)."<br>");
 				
 				break 2;
 			}
