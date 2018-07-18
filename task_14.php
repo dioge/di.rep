@@ -1,39 +1,32 @@
-<pre>
-
 <?php
 
 	$first_prime_number = 2;
+	
+	echo ("Парные простые числа: <br>");
 
 	for($i = 2;; $i++){
 		
-		$check = true;
-				
 		for($j = 2; $j <= ($i/2); $j++){
 
 			if($i%$j == 0){
 
-				$check = false;
 				continue 2;
 			}
 		}
 		
-		if($check){
-
-			$last_prime_number = $i;
-			
-			if(($last_prime_number - $first_prime_number) == 2){
-				
-				$twin_primes[] = $first_prime_number." and ".$last_prime_number;
+		$last_prime_number = $i;
 		
-				if(count($twin_primes) == 10){
-				
-					break;
-				}
-			}
+		if(($last_prime_number - $first_prime_number) == 2){
+			
+			echo ($first_prime_number." and ".$last_prime_number."<br>");
+	
+			if($count++ == 9){
 
-			$first_prime_number = $last_prime_number;
+				break;
+			}
 		}
+
+		$first_prime_number = $last_prime_number;
 	}
 
-	var_dump ($twin_primes);
 ?>
