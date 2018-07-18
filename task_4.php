@@ -1,6 +1,6 @@
 <pre><?php
 
-	echo ("Increasing sequence:<br>");
+	echo ("Порядок возрастания:<br>");
 
 	for($i = 1000; $i < 10000; $i += 2){
 		
@@ -20,7 +20,7 @@
     }
 	
 	
-	echo ("Decreasing sequence:<br>");
+	echo ("Порядок убывания:<br>");
 
 	for($i = 1000; $i < 10000; $i += 2){
 		
