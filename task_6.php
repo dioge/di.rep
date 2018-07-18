@@ -8,9 +8,7 @@
 		
 		while($n >= 1){
 			
-			$digit = $n%10;
-			
-			if($digit == 1 || $digit == 4 || $digit == 5 || $digit == 6 || $digit == 8 || $digit == 9){
+			if($n%10 == 1 || $n%10 == 4 || $n%10 == 5 || $n%10 == 6 || $n%10 == 8 || $n%10 == 9){
 
 				continue 2;
 			}
