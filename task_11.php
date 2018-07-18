@@ -1,37 +1,22 @@
-<pre>
-
 <?php
 
-	
-	$n = (string) rand();
+	$n = rand();
 
-	echo ("The number is: ".$n."<br>");
+	echo ("Число: ".$n."<br>");
 
-	for($i = 1; $i < $n; $i++){
-		
-		$i .= '';
-		$length = strlen($i);
-
-		for($j = 0; $j < $length; $j++){
-			
-			$i_array[$j] = $i[$j];
-		}
-
-		$n_array[$i] = $i_array;
-		
+	for($i = 10; $i <= $n; $i++){
 		
 		$sum = 0;
-
-		for($j = 0; $j < $length; $j++){
+		
+		for($j = $i; $j >= 1; $j = floor($j/10)){
 			
-			$sum += $n_array[$i][$j];
+			$sum +=  $j%10;
 		}
 		
 		if(($i%$sum) == 0){
 			
-			$final_array[] = $i;
+			echo ($i." делится на сумму ".$sum." своих чисел<br>");
 		}
 	}
 
-	var_dump($final_array);
 ?>
