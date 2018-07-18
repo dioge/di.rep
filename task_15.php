@@ -4,17 +4,20 @@
 
 	$n = rand();
 
-	echo ("The number is: ".$n."<br>");
+	echo ("Делители числа ".$n."<br>");
 	
 	for($i = 1; $i <= ($n/2); $i++){
 
 		if($n%$i == 0){
 
-			$divisors[] = $i;
+			echo ($i."<br>");
+			
+			$count++;
 		}
 	}
 
-	$divisors[] = $n;
+	echo ($n."<br>");
 	
-	var_dump ($divisors);
+	echo ($count + 1);
+
 ?>
