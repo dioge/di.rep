@@ -19,7 +19,7 @@
 
 			$check = false;
 			
-			echo ($initial." is not an automorphic number. Square number is ".$initial_square);
+			echo ($initial." не является автоморфным числом. Квадрат числа: ".$initial_square);
 
 			break;
 		}
@@ -31,7 +31,7 @@
 
 	if($check && $_GET["n"] != null){
 	
-		echo ($initial." is an automorphic number. Square number is ".$initial_square);
+		echo ($initial." является автоморфным числом. Квадрат числа: ".$initial_square);
 	}
 
 ?>
