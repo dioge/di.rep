@@ -6,13 +6,9 @@
 		
 		for($j = $i; $j >= 1; $j = (int)($j/10)){
 			
-			$j_digit = $j%10;
-		
 			for($k = (int)($j/10); $k >= 1; $k = (int)($k/10)){
 				
-				$k_digit = $k%10;
-
-				if($j_digit == $k_digit){
+				if($j%10 == $k%10){
 					
 					continue 3;
 				}
