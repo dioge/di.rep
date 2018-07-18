@@ -18,11 +18,11 @@
 	
 	if($increase){
 		
-		echo ($check.": Increasing sequence.");
+		echo ($check.": Порядок возрастания.");
 		
 	}else{
 		
-		echo ($check.": Not increasing sequence.");
+		echo ($check.": Не порядок возрастания.");
 	}
 	
 ?>
