@@ -1,29 +1,52 @@
-<pre>
+<form action="task_13.php" method="get">
+
+	<p>Введите число с четным количеством цифр.</p>
+	<input type="text" name="n">
+	
+</form>
 
 <?php
 
-	$m = (string) rand();
+	$n = $control = $_GET["n"];
 
-	$m_length = strlen($m);
-	
-	if($m_length%2 !== 0){
-
-		exit("m ".$m." is not even");
+	for($i = $n; $i >= 1; $i /= 10){
+		
+		$count++;
 	}
 
-	for($i = 0; $i < ($m_length/2); $i++){
+	if($count%2 != 0){
 
-		$n .= $m[$i];
+		exit("Число ".$control." содержит нечетное количество цифр");
+	}
+
+	$half_count = 1;
+
+	for($i = $count; $i > ($count/2); $i--){
+
+		$half_count *= 10;
 	}
 	
-	$m_halves = $n.$n;
+	$half = $half_control = floor($n/$half_count);
 	
-	if($m == $m_halves){
+	while($half >= 1){
 		
-		echo ("2n is m symmetric: ".$n." and ".$m);
-	}else{
+		if($half%10 != $n%10){
+			
+			echo ("Число ".$half_control." не является ".$control." симметричным");
 		
-		echo ("m ".$m." is not symmetric");
+			$n = false;
+			
+			break;
+		}
+		
+		$half = floor($half/10); 
+		
+		$n = floor($n/10); 
+	}
+	
+	if($n){
+		
+		echo ("Число 2x".$half_control." является ".$control." симметричным");
 	}
 	
 ?>
