@@ -1,32 +1,28 @@
 <pre>
 
 <?php
-	$n = rand(1, 45000);
+	$n = rand(1, 100000);
 	
-	echo ("The range is from 1 to ".$n.":<br>");
+	$count = 1;
+	
+	echo ("Диапазон от 1 до ".$n."<br>Числа:<br>");
     
-    // Находим факторионы
-	
 	for($i = 1; $i <= $n; $i++){
-		
-		$i .= "";
-		
-		$length = strlen($i);
-		
+
 		$j_factorial_sum = 0;
-		
-		for($j = 0; $j < $length; $j++){
+
+		for($j = $i; $j >= 1; $j = (int)($j/10)){
             
 			$j_factorial = 1;
             
-            if($i[$j] == 0){
+            if($j % 10 == 0){
                 
                 $j_factorial_sum += $j_factorial;
                 
                 continue;
             }
 			
-			for($k = 1; $k <= $i[$j]; $k++){
+			for($k = 1; $k <= $j % 10; $k++){
 				
 				$j_factorial *= $k;
 			}
@@ -36,23 +32,12 @@
 		
         if($i == $j_factorial_sum){
             
-            $factorion_array[] = $j_factorial_sum;
+            echo ($count++.". ".$i."<br>");
+			
+			$sum += $i;
         }
 	}
-    
-    // Находим количество и сумму факторионов
-    
-    $count = count($factorion_array);
-    
-    echo ("Number of factorions in the range: ".$count."<br>");
-    
-	var_dump ($factorion_array);
-    
-    for($i = 0; $i < $count; $i++){
-        
-        $sum += $factorion_array[$i];
-    }
 	
-    echo ("Sum of factorions in the range: ".$sum);
+    echo ("Сумма факторионов диапазона: ".$sum);
     
 ?>
