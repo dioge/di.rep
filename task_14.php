@@ -18,7 +18,7 @@
 		
 		if(($last_prime_number - $first_prime_number) == 2){
 			
-			echo ($first_prime_number." and ".$last_prime_number."<br>");
+			echo ($first_prime_number." и ".$last_prime_number."<br>");
 	
 			if($count++ == 9){
 
