@@ -2,41 +2,45 @@
 
 <?php
 
-	$n = (string) rand();
+	$n = mt_rand();
 	
-	$n_length = strlen($n);
+	echo ("Число: <br>".$n."<br>");
 	
-	echo ("The number is ".$n."<br>");
-	
-	for($i = 0; $i < $n_length; $i++){
+	function exponentiation($base, $exponent){
 		
-		$n_array[] = $n[$i];
-	}
-
-	for($i = 0; $i < ($n_length - 1);){
-		
-		$check = false;
-
-		if($n_array[$i] > $n_array[($i + 1)]){
+		for($i = $number = 1; $i <= $exponent; $i++){
 			
-			$check = true;
-		
-			$temp = $n_array[$i];
-			
-			$n_array[$i] = $n_array[($i + 1)];
-			
-			$n_array[($i + 1)] = $temp;
+			$number *= $base;
 		}
 		
-		if($check){
+		return $number;
+	}
+	
+	while($n >= exponentiation(10, $i)){
+		
+		$highest_order = (int)($n / exponentiation(10, $i + 2)) * exponentiation(10, $i + 2);
+
+		$lower_order = (int)($n / exponentiation(10, $i)) % 10;
+		
+		$higher_order = (int)($n / exponentiation(10, ($i + 1))) % 10;
+		
+		$rest = $n % exponentiation(10, $i);
+
+		if($lower_order < $higher_order){
+			
+			$n = (($highest_order) + 
+			($lower_order * (exponentiation(10, $i + 1))) + 
+			($higher_order * (exponentiation(10, $i))) + 
+			($rest));
 			
 			$i = 0;
 			
-		}else{
-			
-			 $i++;
+			continue;
 		}
+		
+		$i++;
 	}	
 	
-	var_dump ($n_array);
+	echo ("Цифры в порядке возрастания: <br>".$n);
+	
 ?>
