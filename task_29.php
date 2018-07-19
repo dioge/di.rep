@@ -1,3 +1,50 @@
+<!--<form action="task_29.php" method="get">
+
+	<p>Задайте последовательность от 0 до n.</p>
+	<input type="text" name="n">
+	
+	<p>Введите заданное число.</p>
+	<input type="text" name="k">
+
+	<p></p>
+	<input type="submit" value="Подтвердите ввод.">
+
+</form>-->
+
+<pre>
+
+<?PHP
+	
+	// $n = $_GET["n"];
+	$n = 123;
+	
+	// echo ("Последовательность от 0 до ".$_GET["n"]."\n");
+	
+	function get_combinations($number){
+		
+		
+	}
+
+			
+	echo ("В последовательности отсутствуют числа, удовлетворяющие условию");
+	
+?>	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <form action="task_29.php" method="get">
 
 	<p>Задайте последовательность от 0 до n.</p>
