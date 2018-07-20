@@ -1,157 +1,58 @@
-<!--<form action="task_29.php" method="get">
-
-	<p>Задайте последовательность от 0 до n.</p>
-	<input type="text" name="n">
-	
-	<p>Введите заданное число.</p>
-	<input type="text" name="k">
-
-	<p></p>
-	<input type="submit" value="Подтвердите ввод.">
-
-</form>-->
 
 <pre>
 
 <?PHP
 	
-	// $n = $_GET["n"];
-	$n = 123;
+	$n = $count = 123;
 	
-	// echo ("Последовательность от 0 до ".$_GET["n"]."\n");
-	
-	function get_combinations($number){
+	while($count > 0){
 		
+		$count = (int)($count / 10);
 		
+		$digit_number++;
 	}
-
+	
+	function exponentiation($base, $exponent){
+		
+		for($i = $number = 1; $i <= $exponent; $i++){
 			
-	echo ("В последовательности отсутствуют числа, удовлетворяющие условию");
-	
-?>	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<form action="task_29.php" method="get">
-
-	<p>Задайте последовательность от 0 до n.</p>
-	<input type="text" name="n">
-	
-	<p>Введите заданное число.</p>
-	<input type="text" name="k">
-
-	<p></p>
-	<input type="submit" value="Подтвердите ввод.">
-
-</form>
-
-<pre>
-
-<?PHP
-
-	$result_array = array(); 
-	
-	$combination = array();
-	
-	$n .= $_GET["n"];
-	
-	echo ("Последовательность от 0 до ".$_GET["n"]."\n");
-	
-	$n_length = strlen($n);
-	
-	for ($i = 0; $i < $n_length; ++$i) {
-		
-		$n_array[] = $n[$i];
-	}
-	
-	$n_count = count($n_array);
-	
-	
-	// Получаем массив из комбинаций цифр чисел последовательности
-	
-	function get_combinations(array $array, $elements_number, $count_) {
-		
-		global $result_array, $combination;
-
-		create_combination_array(0, $elements_number, $array, $count_);
-		
-		return $result_array;
-
-	}
-
-	function create_combination_array($start, $elements_number_, $array_, $count_) {
-		
-		global $result_array, $combination;
-
-		if ($elements_number_ == 0){
-			
-			array_push($result_array, $combination);
-
-		}else{
-			
-			for ($i = $start; $i <= $count_ - $elements_number_; ++$i) {
-				
-				array_push($combination, $array_[$i]);
-				
-				create_array($i + 1, $elements_number_ - 1, $array_, $count_);
-
-				array_pop($combination);
-				
-			}
-		}
-	}
-	
-	for($i = 2; $i < $n_count; $i++){
-		
-		get_combinations($n_array, $i, $n_count);
-	}
-
-
-	// Проверка на соответствие условию
-
-	$result_array_count = count($result_array);
-	
-	for($i = 0; $i < $result_array_count; $i++){
-		
-		$i_count = count($result_array[$i]);
-		
-		for($j = 0; $j < $i_count; $j++){
-
-			$final_array[$i] .= $result_array[$i][$j];
-
-			$sum_array[$i] += $result_array[$i][$j];
+			$number *= $base;
 		}
 		
-		if($sum_array[$i] == $_GET["k"]){
-				
-			$final_numbers_array[] = $final_array[$i];
-		}
+		return $number;
 	}
 	
-	// Вывод
+	function get_combinations($number, $limit = 1, $digits_sum = "", $digits){
 
-	if($final_numbers_array){
-		
-		echo ("Для следующих чисел последовательности справедливо условие в отношении заданного числа ".$_GET["k"]."<br>");
-		
-		print_r($final_numbers_array);
-
-	}else{
+		if($limit == $digits){
 			
-		echo ("В последовательности отсутствуют числа, удовлетворяющие условию");
+			return;
+		}
+
+		for($i = 0; $i < $limit; $i++){
+			
+			$sum = $digits_sum;
+		
+			$order = exponentiation(10, $i);
+			
+			$digit = ((int)($number / $order)) % 10;
+			
+			$sum .= $digit;
+			
+			echo $sum."<br>";
+
+			get_combinations((int)($number / 10), $limit + 1, $sum, $digits);
+			
+		}
+		
+		if((int)($number / 10) > 0 && $digits_sum == ""){
+			
+			// var_dump ($number);
+			// var_dump ($digits_sum);
+			get_combinations((int)($number / 10), 1, "", $digits);
+		}
 	}
+
+	get_combinations($n, 1, "", $digit_number);
 
 ?>
