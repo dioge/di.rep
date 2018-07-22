@@ -1,16 +1,26 @@
+<form action="task_29.php" method="get">
+
+	<p>Введите натуральное число.</p>
+	<input type="text" name="n">
+    
+	<p>Задайте число для сравнения.</p>
+	<input type="text" name="k">
+
+	<input type="submit" value="Подтвердить">
+	
+</form>
 
 <pre>
 
-<?PHP
+<?php
 	
-	$n = $count = 123;
-	
-	while($count > 0){
-		
-		$count = (int)($count / 10);
-		
-		$digit_number++;
-	}
+    $n = rand(1, $_GET["n"]);
+    
+    $k = $_GET["k"];
+    
+	echo ("Диапазон от 1 до ".$n."<br>");
+    
+	echo ("Число k: ".$_GET["k"]."<br>");
 	
 	function exponentiation($base, $exponent){
 		
@@ -22,37 +32,64 @@
 		return $number;
 	}
 	
-	function get_combinations($number, $limit = 1, $digits_sum = "", $digits){
-
-		if($limit == $digits){
+	function get_combinations($number, $limit = 0, $digits_number_, $digits_sum = 0, $digits = "", $k_){
+     
+		if($limit == $digits_number_ || $number == 0){
 			
 			return;
 		}
-
-		for($i = 0; $i < $limit; $i++){
-			
-			$sum = $digits_sum;
+        
+		for($i = 0; $i <= $limit; $i++){
 		
 			$order = exponentiation(10, $i);
 			
-			$digit = ((int)($number / $order)) % 10;
-			
-			$sum .= $digit;
-			
-			echo $sum."<br>";
+            $digit = ((int)($number / $order)) % 10;
+            
+			if($digit == 0){
+                
+                break;
+            }
 
-			get_combinations((int)($number / 10), $limit + 1, $sum, $digits);
+			$digits_sum_ = $digits_sum;
+	
+			$digits_sum_ += $digit;
+
+            $digits_ = $digits;
+			
+			$digits_ = $digit." ".$digits_;
+            
+            if($digits_sum_ == $k_){
+                
+                echo $digits_;
+
+                echo "= ".$digits_sum_.", ";
+            }
+            
+			get_combinations((int)($number / exponentiation(10, $i + 1)), $limit + 1, $digits_number_, $digits_sum_, $digits_, $k_);
 			
 		}
 		
-		if((int)($number / 10) > 0 && $digits_sum == ""){
+		if((int)($number / 10) > 0 && $digits_sum == 0){
 			
-			// var_dump ($number);
-			// var_dump ($digits_sum);
-			get_combinations((int)($number / 10), 1, "", $digits);
+			get_combinations((int)($number / 10), 0, $digits_number_, 0, "", $k_);
 		}
 	}
+    
+    for($i = 1; $i <= $n; $i++){
+        
+        echo ("<br>Число ".$i." => ");
 
-	get_combinations($n, 1, "", $digit_number);
+        $count = $i;
+        
+        $digits_number = 0;
 
+        while($count > 10){
+            
+            $count = (int)($count / 10);
+            
+            $digits_number++;
+        }
+
+        get_combinations($i, 0, $digits_number, 0, "", $k);
+    }
 ?>
