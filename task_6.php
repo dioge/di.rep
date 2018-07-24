@@ -1,22 +1,33 @@
-<pre>
+<pre><?php
 
-<?php
-
-	for($i = 1000; $i < 10000; $i++){
+	function exponentiation($base, $exponent){
 		
-		$n = $i;
-		
-		while($n >= 1){
+		for($i = $number = 1; $i <= $exponent; $i++){
 			
-			if($n%10 == 1 || $n%10 == 4 || $n%10 == 5 || $n%10 == 6 || $n%10 == 8 || $n%10 == 9){
-
-				continue 2;
-			}
-			
-			$n = (int)($n/10);
+			$number *= $base;
 		}
+		
+		return $number;
+	}
 	
-		echo ($i."<br>");
-    }
+	echo ("Комбинации:<br>");
+
+	function get_combinations($number = 7320, $limit = 3, $combination = 0){
+		
+		if($combination > 1000){
+			
+			echo ($combination."<br>");
+		}
+			
+		for($i = 0; $i <= $limit; $i++){
+			
+			$digit = $number % 10;
+			
+			get_combinations((int)($number / 10), $limit - 1, ($combination * 10) + $digit);
+			
+			$number = (($digit * exponentiation(10, $limit)) + (int)($number / 10));
+		}
+	}
 	
+	get_combinations();
 ?>
