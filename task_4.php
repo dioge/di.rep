@@ -2,36 +2,39 @@
 
 	for($i = 1000; $i < 10000; $i += 2){
 		
-		$n = $i;
+		$n = $m = $k = $i;
 		
-        if($n % 10 > (int)($n / 10) % 10){
-            
-            while($n >= 10){
-                
-                if($n % 10 <= (int)($n / 10) % 10){
-                    
-                    continue 2;
-                }
-                
-                $n = (int)($n / 10);
-            }
-            
-            echo ("Возрастание = > ".$i."<br>");
+		$increase = $decrease = false;
+		
+		while($n >= 10){
+			
+			if($m % 10 > (int)($m / 10) % 10){
+				
+				$increase = true;
+				
+				$m = $n =(int)($n / 10);
+				
+			}elseif($k % 10 < (int)($k / 10) % 10){
+				
+				$decrease = true;
+				
+				$k = $n = (int)($n / 10);
+				
+			}else{
+				
+				$increase = $decrease = false;
 
-        }elseif($n % 10 < (int)($n / 10) % 10){
+				break;
+			}
+		}
+		
+		if($increase){
 
-            while($n >= 10){
-                
-                if($n % 10 >= (int)($n / 10) % 10){
-                    
-                    continue 2;
-                }
-                
-                $n = (int)($n / 10);
-            }
-            
-            echo ("Убывание < = ".$i."<br>");
-        }
+			echo ("Возрастание = > ".$i."<br>");
+
+		}elseif($decrease){
+		
+			echo ("Убывание < = ".$i."<br>");
+		}
     }
-
 ?>
