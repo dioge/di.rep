@@ -6,37 +6,52 @@
 		
 		public $combinations = array();
 		
-		public function getCombinations($number = "7320", $limit = 3, $combination = "", $i_ = 0){
 		
-
-			for($i = $i_; $i < strlen($number); $i++){
+		public function getCombination($number = "1234", $limit = 3, $combination = "", $usedDigits = array()){
+		
+			
+			for($i = 0; $i < strlen($number); $i++){
+			$usedDigits_ = $usedDigits;
 				
-				if(strlen($combination) == 3){
+				for($j = 0; $j < count($usedDigits); $j++){
+									
+				
+					if($i == $usedDigits[$j]){
+				// var_dump ($usedDigits_);
+		
+						continue 2;
+					}
+				}
+
+				$combination_ = $combination;
+				
+				$usedDigits[] = $i;
+				
+				
+				$digit = $number[$i];
+				
+				if(strlen($combination_) == $limit){
 					
 					// $this->combinations[] = $combination;
 					
-					// echo $combination."<br>";
-					
+					echo $combination_."<br>";
 					
 					break;
 				}
 				
-				$digit = $number[$i];
+				$this->getCombination($number, $limit, $combination_ .= $digit, $usedDigits_);
+
 				
-				$this->getCombinations($number, $limit, $combination .= $digit, $i_ += 1);
-									echo $combination."<br>";
-
-								// var_dump($digit);
-								// var_dump($i);
-
+				
 			}
 		}
 	}
 	
-	$test = new getCombinations();
+	$test = new GetCombinations();
 	
-	$test->getCombinations();
+	$test->getCombination();
 	
 	// var_dump ($test->combinations);
+	// var_dump ($test);
 
 ?>
