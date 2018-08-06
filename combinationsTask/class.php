@@ -2,56 +2,64 @@
 
 <?php
 
-	class GetCombinations{
+	class Combinations{
+        
+        private $number;
+        
+        private $limit;
 		
-		public $combinations = array();
+		private $combinations = array();
+        
+        public function getNumbers($number, $limit){
+            
+            $this->number = $number;
+            
+            $this->limit = $limit;
+        }
 		
+		private function getCombinations($combination = "", $usedDigits = array()){
 		
-		public function getCombination($number = "1234", $limit = 3, $combination = "", $usedDigits = array()){
-		
+			for($i = 0; $i < strlen($this->number); $i++){
 			
-			for($i = 0; $i < strlen($number); $i++){
-			$usedDigits_ = $usedDigits;
-				
-				for($j = 0; $j < count($usedDigits); $j++){
-									
-				
-					if($i == $usedDigits[$j]){
-				// var_dump ($usedDigits_);
+                foreach($usedDigits as $usedDigit){
+                    
+					if($i == $usedDigit){
 		
 						continue 2;
 					}
-				}
-
+                }
+                
 				$combination_ = $combination;
+                
+                $usedDigits_ = $usedDigits;
 				
-				$usedDigits[] = $i;
+				$usedDigits_[] = $i;
 				
+				$digit = $this->number[$i];
 				
-				$digit = $number[$i];
-				
-				if(strlen($combination_) == $limit){
+				if(strlen($combination_) == $this->limit){
 					
-					// $this->combinations[] = $combination;
-					
-					echo $combination_."<br>";
+					$this->combinations[] = $combination_;
 					
 					break;
 				}
 				
-				$this->getCombination($number, $limit, $combination_ .= $digit, $usedDigits_);
-
-				
-				
+				$this->getCombinations($combination_ .= $digit, $usedDigits_);
 			}
 		}
+        
+        public function showCombinations(){
+            
+            $this->getCombinations();
+            
+            var_dump ($this->combinations);
+        }
 	}
 	
-	$test = new GetCombinations();
+	$test = new Combinations();
+    
+    $test->getNumbers("12345", 3);
 	
-	$test->getCombination();
-	
-	// var_dump ($test->combinations);
-	// var_dump ($test);
-
+	$test->showCombinations();
+    
 ?>
