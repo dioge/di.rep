@@ -4,20 +4,23 @@
 
 	class GetCombinations{
 		
-		public function getCombinations($number = 7320, $limit = 3, $combination = 0){
+		public function getCombinations($number = "7320", $limit = 3, $combination = "", $i_ = 0){
 		
-			if($combination > 1000){
 				
-				echo ($combination."<br>");
-			}
+			for($i = $i_; $i < strlen($number); $i++){
 				
-			for($i = 0; $i <= $limit; $i++){
+				if($combination == 2){
+					
+					echo ($combination."<br>");
+					
+					break;
+				}
 				
-				$digit = $number % 10;
+				$digit = $number[$i];
 				
-				$this->getCombinations((int)($number / 10), $limit - 1, ($combination * 10) + $digit);
+				$this->getCombinations($number, $limit, $combination .= $digit, $i_++);
 				
-				$number = (($digit * pow(10, $limit)) + (int)($number / 10));
+				
 			}
 		}
 	}
