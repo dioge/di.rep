@@ -47,19 +47,43 @@
 				$this->getCombinations($combination_ .= $digit, $usedDigits_);
 			}
 		}
+
+        private function countCombinations(){
+            
+            $combinationsNumber = gmp_fact(strlen($this->number))/gmp_fact(strlen($this->number) - $this->limit);
+            
+            return $combinationsNumber;
+        }
         
         public function showCombinations(){
             
             $this->getCombinations();
             
             var_dump ($this->combinations);
+            
+            var_dump ($this->countCombinations());
         }
+        
+        public function recordError(){
+
+            
+        }        
+
+        public function getError(){
+
+            
+        }        
+
+        public function showError(){
+
+            
+        }        
 	}
 	
 	$test = new Combinations();
     
-    $test->getNumbers("12345", 3);
+    $test->getNumbers("12345", 4);
 	
 	$test->showCombinations();
-    
+	    
 ?>
