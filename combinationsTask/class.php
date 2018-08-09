@@ -2,6 +2,27 @@
 
 <?php
 
+    class MyException extends Exception{
+        
+        private $exceptions = array();
+        
+        private function setException(){
+            
+            
+        }
+        
+        private function getException(){
+            
+            
+        }
+        
+        private function showException(){
+            
+            
+        }
+    }
+
+
 	class Combinations{
         
         private $number;
@@ -9,6 +30,15 @@
         private $limit;
 		
 		private $combinations = array();
+        
+        private function setException(){
+            
+            if((strlen($this->number) - $this->limit) < 0){
+                    
+                throw new Exception("Длина строки больше, чем у заданного числа");
+            }
+        }
+
         
         public function getNumbers($number, $limit){
             
@@ -50,40 +80,34 @@
 
         private function countCombinations(){
             
+            $this->setException();
+            
             $combinationsNumber = gmp_fact(strlen($this->number))/gmp_fact(strlen($this->number) - $this->limit);
             
-            return $combinationsNumber;
+            return "Количество комбинаций: ".$combinationsNumber;
         }
         
         public function showCombinations(){
             
+            try{
+                
+                echo ($this->countCombinations())."<br>";
+                
+            }catch(Exception $e){
+                
+                echo "Ошибка: ", $e->getMessage(), "<br>";
+            }
+            
             $this->getCombinations();
             
             var_dump ($this->combinations);
-            
-            var_dump ($this->countCombinations());
         }
-        
-        public function recordError(){
-
-            
-        }        
-
-        public function getError(){
-
-            
-        }        
-
-        public function showError(){
-
-            
-        }        
 	}
 	
-	$test = new Combinations();
+	$example = new Combinations();
     
-    $test->getNumbers("12345", 4);
+    $example->getNumbers("12345", 6);
 	
-	$test->showCombinations();
+	$example->showCombinations();
 	    
 ?>
