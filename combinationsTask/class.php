@@ -45,31 +45,36 @@
             $combinations = str_split($this->number);
 
             for($i = 0; $i < $this->limit; $i++){
+
+                for($j = 0; $j < count($combinations); $j++){
                 
-                foreach($combinations as $combination){
+                    $usedDigits[] = $this->number[$j];
                     
-                    $usedDigits[] = $combination;
-                    
-                    // var_dump ($combination);
-                    // var_dump ("----------------------<br>");
+                    $combination .= $combinations[$j];
                     
                     if(strlen($combination) == $this->limit){
                         
                         $finalCombinations[] = $combination;
                     }
-                        
-                    for($j = 0; $j < strlen($this->number) && strlen($combination) <= $this->limit; $j++){
+                    
+                    for($k = 0; $k < strlen($this->number) && strlen($combination) <= $this->limit; $k++){
                         
                         foreach($usedDigits as $usedDigit){
 
-                            if($this->number[$j] == $usedDigit){
+                            if($this->number[$k] == $usedDigit){
                 
                                 continue 2;
                             }
                         }
                     
-                        $newCombinations[] = $combination.$this->number[$j];
+                        $newCombinations[] = $combination.$this->number[$k];
+                    // var_dump ($combination);
+                    // var_dump ($usedDigit);
+                    // var_dump ($newCombinations);
+                    // var_dump ("----------------------<br>");
                     }
+                    
+                    $combination = "";
                     
                     unset($usedDigits);
                 }
