@@ -1,7 +1,6 @@
 <pre>
 
 <?php
-
 	class Combinations{
         
         private $number;
@@ -22,42 +21,73 @@
         private function countCombinations(){
             
             $combinationsNumber = gmp_fact(strlen($this->number))/gmp_fact(strlen($this->number) - $this->limit);
-            
+			
             return "Количество комбинаций: ".$combinationsNumber;
         }
         
-		private function getCombinations($combination = "", $usedDigits = array()){
-		
-			for($i = 0; ($i < strlen($this->number)) && !(strlen($combination) == $this->limit); $i++){
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+		private function getCombinations(){
 			
-                foreach($usedDigits as $usedDigit){
+			$combinations = array();
+			
+            $finalCombinations = array();
+            
+                
+            for($i = 0; $i < strlen($this->number); $i++){
+            
+                $combinations[] = $this->number[$i];
+            }
+
+            while($j < $this->limit){
+                
+                $j++;
+
+                foreach($combinations as $combination){
+
+                    for($i = 0; $i < strlen($this->number); $i++){
+                        
+                        if($combination == $this->number[$i]){
+                            
+                            continue;
+                        }
                     
-					if($i == $usedDigit){
-		
-						continue 2;
-					}
+                        $newCombinations[] = $combination.$this->number[$i];
+                    
+                        if(strlen($combination) == $this->limit){
+                            
+                            $finalCombinations[] = $combination;
+                        }
+                    }
                 }
                 
-				$combination_ = $combination;
-                
-                $usedDigits_ = $usedDigits;
-				
-				$usedDigits_[] = $i;
-				
-				$digit = $this->number[$i];
-                
-				$this->getCombinations($combination_ .= $digit, $usedDigits_);
-				
-				if(strlen($combination_) == $this->limit){
-					
-					$this->combinations[] = $combination_;
-				}
-			}
+                $combinations = $newCombinations;
+            }
+            
+            return $finalCombinations;
 		}
-
+		
+        
+        
+        
+        
+        
+        
+        
+        
+        
         public function showCombinations(){
             
-            $this->getCombinations();
+            var_dump ($this->getCombinations());
             
             $this->getErrors();
         }
@@ -70,7 +100,6 @@
                     
                     throw new Exception("Длина строки больше, чем у заданного числа");
                 }
-
                 echo ($this->countCombinations())."<br>";
                 
             }catch(Exception $e){
@@ -85,28 +114,23 @@
                     throw new Exception("Массив пустой");
                 }
                 
-                // var_dump($this->combinations);
+                var_dump($this->combinations);
                 
-                foreach($this->combinations as $combination){
-
-                    echo $combination."<br>";
-                }
+                // foreach($this->combinations as $combination){
+                    // echo $combination."<br>";
+                // }
                 
             }catch(Exception $e){
-
                 $this->recordError($e->getMessage());
             }
         }
-
         private function recordError($error){
             
             $this->errors[] = $error;
         }
-
         public function showErrors(){
             
             foreach($this->errors as $error){
-
                 echo "Ошибка: " . $error."<br>";
             }
         }
@@ -114,10 +138,9 @@
 	
 	$example = new Combinations();
     
-    $example->getNumbers("1234", 3);
+    $example->getNumbers("123", 2);
 	
 	$example->showCombinations();
-
+    
 	$example->showErrors();
-
 ?>
