@@ -38,36 +38,40 @@
         
 		private function getCombinations(){
 			
-			$combinations = array();
-			
             $finalCombinations = array();
             
-                
-            for($i = 0; $i < strlen($this->number); $i++){
+            $usedDigits = array();
             
-                $combinations[] = $this->number[$i];
-            }
+            $combinations = str_split($this->number);
 
-            while($j < $this->limit){
+            for($i = 0; $i < $this->limit; $i++){
                 
-                $j++;
-
                 foreach($combinations as $combination){
-
-                    for($i = 0; $i < strlen($this->number); $i++){
+                    
+                    $usedDigits[] = $combination;
+                    
+                    // var_dump ($combination);
+                    // var_dump ("----------------------<br>");
+                    
+                    if(strlen($combination) == $this->limit){
                         
-                        if($combination == $this->number[$i]){
-                            
-                            continue;
-                        }
-                    
-                        $newCombinations[] = $combination.$this->number[$i];
-                    
-                        if(strlen($combination) == $this->limit){
-                            
-                            $finalCombinations[] = $combination;
-                        }
+                        $finalCombinations[] = $combination;
                     }
+                        
+                    for($j = 0; $j < strlen($this->number) && strlen($combination) <= $this->limit; $j++){
+                        
+                        foreach($usedDigits as $usedDigit){
+
+                            if($this->number[$j] == $usedDigit){
+                
+                                continue 2;
+                            }
+                        }
+                    
+                        $newCombinations[] = $combination.$this->number[$j];
+                    }
+                    
+                    unset($usedDigits);
                 }
                 
                 $combinations = $newCombinations;
@@ -138,7 +142,7 @@
 	
 	$example = new Combinations();
     
-    $example->getNumbers("123", 2);
+    $example->getNumbers("123", 3);
 	
 	$example->showCombinations();
     
