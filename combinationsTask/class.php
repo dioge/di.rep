@@ -31,10 +31,8 @@
 
         // Получение комбинаций
         
-		private function getCombinations(){
+	private function getCombinations(){
 			
-            $finalCombinations = array();
-            
             $combinations = $originalNumber = str_split($this->number);
             
             for($i = 0; $i < ($this->limit - 1); $i++){
@@ -48,11 +46,6 @@
                         $tempCombination = $combination.$restDigit;
 
                         $tempCombinations[] = $tempCombination;
-                        
-                        if(strlen($tempCombination) == $this->limit){
-                            
-                            $finalCombinations[] = $tempCombination;
-                        }
                     }
                 }
                 
@@ -61,7 +54,7 @@
                 unset($tempCombinations);
             }
             
-            return $this->combinations = $finalCombinations;
+            return $this->combinations = $combinations;
 		}
 		
         // Вывод комбинаций
@@ -128,7 +121,7 @@
 	
 	$example = new Combinations();
     
-    $example->getNumbers("12345", 4);
+    $example->getNumbers("1234", 3);
 	
 	$example->showCombinations();
     
