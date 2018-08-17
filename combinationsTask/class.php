@@ -41,9 +41,7 @@
                 
                 foreach($combinations as $combination){
                     
-                    $usedDigits = str_split($combination);
-                    
-                    $restDigits = array_values(array_diff($originalNumber, $usedDigits));
+                    $restDigits = array_diff($originalNumber, str_split($combination));
 
                     foreach($restDigits as $restDigit){
                         
