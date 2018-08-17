@@ -26,7 +26,7 @@
             
             $combinationsNumber = gmp_fact(strlen($this->number))/gmp_fact(strlen($this->number) - $this->limit);
 			
-            return "Количество комбинаций: ".$combinationsNumber;
+            return $combinationsNumber;
         }
 
         // Получение комбинаций
@@ -85,7 +85,7 @@
                     
                     throw new Exception("Длина строки больше, чем у заданного числа");
                 }
-                echo ($this->countCombinations())."<br>";
+            echo "Число: {$this->number}, длина строки: {$this->limit}, количество комбинаций: {$this->countCombinations()}<br>"; 
                 
             }catch(Exception $e){
                 
