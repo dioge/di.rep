@@ -11,6 +11,8 @@
         
         private $errors = array();
         
+        // Получение строки и длины
+        
         public function getNumbers($number, $limit){
             
             $this->number = $number;
@@ -18,88 +20,62 @@
             $this->limit = $limit;
         }
 		
+        // Подсчет комбинаций
+        
         private function countCombinations(){
             
             $combinationsNumber = gmp_fact(strlen($this->number))/gmp_fact(strlen($this->number) - $this->limit);
 			
             return "Количество комбинаций: ".$combinationsNumber;
         }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
+        // Получение комбинаций
         
 		private function getCombinations(){
 			
             $finalCombinations = array();
             
-            $usedDigits = array();
+            $combinations = $originalNumber = str_split($this->number);
             
-            $combinations = str_split($this->number);
-
-            for($i = 0; $i < $this->limit; $i++){
-
-                for($j = 0; $j < count($combinations); $j++){
+            for($i = 0; $i < ($this->limit - 1); $i++){
                 
-                    $usedDigits[] = $this->number[$j];
+                foreach($combinations as $combination){
                     
-                    $combination .= $combinations[$j];
+                    $usedDigits = str_split($combination);
                     
-                    if(strlen($combination) == $this->limit){
-                        
-                        $finalCombinations[] = $combination;
-                    }
-                    
-                    for($k = 0; $k < strlen($this->number) && strlen($combination) <= $this->limit; $k++){
-                        
-                        foreach($usedDigits as $usedDigit){
+                    $restDigits = array_values(array_diff($originalNumber, $usedDigits));
 
-                            if($this->number[$k] == $usedDigit){
-                
-                                continue 2;
-                            }
+                    foreach($restDigits as $restDigit){
+                        
+                        $tempCombination = $combination.$restDigit;
+
+                        $tempCombinations[] = $tempCombination;
+                        
+                        if(strlen($tempCombination) == $this->limit){
+                            
+                            $finalCombinations[] = $tempCombination;
                         }
-                    
-                        $newCombinations[] = $combination.$this->number[$k];
-                    // var_dump ($combination);
-                    // var_dump ($usedDigit);
-                    // var_dump ($newCombinations);
-                    // var_dump ("----------------------<br>");
                     }
-                    
-                    $combination = "";
-                    
-                    unset($usedDigits);
                 }
                 
-                $combinations = $newCombinations;
+                $combinations = $tempCombinations;
+                
+                unset($tempCombinations);
             }
             
-            return $finalCombinations;
+            return $this->combinations = $finalCombinations;
 		}
 		
-        
-        
-        
-        
-        
-        
-        
-        
+        // Вывод комбинаций
         
         public function showCombinations(){
             
-            var_dump ($this->getCombinations());
+            $this->getCombinations();
             
             $this->getErrors();
         }
+        
+        // Проверка на ошибки
         
         private function getErrors(){
             
@@ -133,13 +109,20 @@
                 $this->recordError($e->getMessage());
             }
         }
+        
+        // Запись ошибки
+        
         private function recordError($error){
             
             $this->errors[] = $error;
         }
+        
+        // Вывод ошибки
+        
         public function showErrors(){
             
             foreach($this->errors as $error){
+                
                 echo "Ошибка: " . $error."<br>";
             }
         }
@@ -147,7 +130,7 @@
 	
 	$example = new Combinations();
     
-    $example->getNumbers("123", 3);
+    $example->getNumbers("12345", 4);
 	
 	$example->showCombinations();
     
